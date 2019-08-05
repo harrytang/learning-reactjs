@@ -20,22 +20,49 @@ const App = () => {
     });
 
 
-    const switchNameHandler = () => {
+    const switchNameHandler = (name) => {
         setPersonsState({
             persons: [
-                {name: "Harry Tang", age: 35},
+                {name: name, age: 35},
                 {name: "Quynh Tran", age: 27}
             ],
             extra: personsState.extra
         });
     };
 
+    const nameUpdateHandler = (event) => {
+        setPersonsState({
+            persons: [
+                {name: "Harry", age: 35},
+                {name: event.target.value, age: 27}
+            ],
+            extra: personsState.extra
+        });
+    };
+
+    const style={
+        padding: '8px',
+        border: '1px solid green'
+    };
 
     return (
+
         <div className="App">
-            <button onClick={switchNameHandler}>Switch Name</button>
-            <Person name={personsState.persons[0].name} age={personsState.persons[0].age}/>
-            <Person name={personsState.persons[1].name} age={personsState.persons[1].age}>I like cooking</Person>
+            <button
+                style={style}
+                onClick={switchNameHandler.bind(this, "Gia Duy DUONG")}>
+                Switch Name
+            </button>
+            <Person
+                name={personsState.persons[0].name}
+                age={personsState.persons[0].age}
+                click={()=>switchNameHandler("Gia Duy DUONG")}
+            />
+            <Person
+                name={personsState.persons[1].name}
+                age={personsState.persons[1].age}
+                nameChange={nameUpdateHandler}
+            >I like cooking</Person>
         </div>
     );
 

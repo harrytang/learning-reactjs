@@ -80,11 +80,19 @@ const App = () => {
         );
     }
 
+    const classes = [];
+    if(personsState.persons.length<=2) {
+        classes.push('red');
+    }
+    if(personsState.persons.length<=1) {
+        classes.push('bold');
+    }
+
     return (
-
-
         <div className="App">
-            <Button variant="contained" color="primary" onClick={showPersonsHandler}>
+            <p className={classes.join(' ')}>Hello World</p>
+            <Button variant="contained" color={personsState.showPersons ? 'secondary' : 'primary'}
+                    onClick={showPersonsHandler}>
                 Show Persons
             </Button>
             {persons}
